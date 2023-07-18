@@ -1,0 +1,19 @@
+### Signup
+
+POST http://localhost:3000/api/auth/signup 
+Content-Type: application/json
+
+{
+    "username" : "amith", "password" : "12345678"
+
+}
+
+### Login
+
+POST http://localhost:3000/api/auth/login 
+Content-Type: application/json
+
+{
+    "username" : "amith", "password" : "12345678"
+
+}
