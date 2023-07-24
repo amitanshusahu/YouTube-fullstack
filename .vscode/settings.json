@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    "**/node_modules": true,
+    "**/package*": true,
+    "client/tsconfig*": true,
+    "**/vite*":true,
+    "**/*.cjs": true,
+    "client/public/" : true,
+    "client/*.html": true,
+    "**/.gitignore": true,
+    "**/*.md": true,
+  },
+
+  // configs
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+}

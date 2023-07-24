@@ -1,1 +1,33 @@
- 
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+}
+
+input, textarea{
+  padding: 10px;
+  border: 2px solid rgb(95, 95, 95);
+  border-radius: 10px;
+  resize: none;
+  outline: none;
+}
+input:focus, textarea:focus{
+  outline: 1px solid rgb(197, 197, 197);
+}
+
+::placeholder{
+  color: grey;
+}
+
+button{
+  padding: 10px;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  background-color: rgb(0, 153, 255);
+  color: white;
+  cursor: pointer;
+}
