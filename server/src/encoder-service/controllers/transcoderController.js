@@ -2,6 +2,9 @@ const ffmpeg = require('fluent-ffmpeg');
 const amqp = require('amqplib');
 const path = require('path');
 const fs = require('fs');
+const videoModel = require('../models/VideoModel');
+const channelModel = require('../models/Channel');
+const LikeModel = require('../models/LikeModel');
 
 
 // @desc : creates connection to rabbitmq
@@ -32,7 +35,7 @@ async function processVideos(videoPath) {
   const outputDir = path.join(__dirname, '..', 'public', 'hls');
   const uniqueVal = `${Date.now()}`;
   const masterMenifestFileName = `${uniqueVal}.m3u8`;
-  const bitrates = ['800k', '1200k', '2400k'];
+  const bitrates = ['100k', '800k', '1200k', '2400k', '3000k'];
 
   // process in different bitrates
   const ffmpegPromises = bitrates.map( async (bitrate) => {
@@ -67,8 +70,8 @@ async function processVideos(videoPath) {
   fs.writeFileSync(`${outputDir}/${masterMenifestFileName}`,`#EXTM3U
     ${masterManifestContent}`);
   console.log("\n \t Video Transcoding Complete");
-  console.log(fs.existsSync(`${outputDir}/${masterMenifestFileName}`));
-  console.log(`${outputDir}/${masterMenifestFileName}`);
+
+  return masterMenifestFileName
   
 }
 
@@ -81,23 +84,28 @@ async function startConsumer() {
   await channel.assertQueue(queue);
   channel.consume(queue, async (msg) => {
     const content = JSON.parse(msg.content.toString());
-    await processVideos(content.videoPath);
+    let m3u8 = await processVideos(content.videoPath);
+    await saveVideoMetadata(content.username, m3u8, content.title, content.description, content.tags, content.thumbnail);
     channel.ack(msg);
   });
 }
 
 startConsumer();
-// Check in a interval if there is msg in queue
-//setInterval(() => {
 
-  //if ( isMsgInQueue(process.env.VIDEO_QUEUE) ) {
-    //console.log('theres msg in queue');
-  //}
-  //else {
-    //console.log('theres no msg in queue');
-  //}
 
-//}, 1000);
+// @desc : save video metadata to database
+async function saveVideoMetadata(username, m3u8, title, description, tags, thumbnail){
+  let dp = await channelModel.findOne({username});
+  dp = dp.dp;
+  let save = await videoModel.create({username, m3u8, title, description, tags, thumbnail, dp});
+  if (save) console.log('video metadata saved to db');
+  else console.log('vidoe metadata save failed');
+
+  {
+    // add video to like collection
+    await LikeModel.create({vid: save.id, like: 0, dislike: 0});
+  }
+}
 
 module.exports.stream = (req, res) => {
   const manifestFileName = req.params.manifest;

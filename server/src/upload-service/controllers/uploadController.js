@@ -25,7 +25,7 @@ module.exports.upload = (req, res) => {
     upload.single('video')(req, res, async (er) => {
       if(er) return res.status(400).json({status: false, msg:'Error uploding file'});
 
-      const { username, title, description, tags } = req.body;
+      const { username, title, description, tags, thumbnail } = req.body;
       const { file } = req;
       const videoPath = path.join(__dirname, '..', file.path);
 
@@ -34,7 +34,7 @@ module.exports.upload = (req, res) => {
       const channel = await connection.createChannel();
       await channel.assertQueue(process.env.VIDEO_QUEUE);
       channel.sendToQueue(process.env.VIDEO_QUEUE, Buffer.from(JSON.stringify({
-        username, videoPath, title, description, tags
+        username, videoPath, title, description, tags, thumbnail
       })));
       console.log("payload publised to videoQueue");
       res.status(200).json({status: true});

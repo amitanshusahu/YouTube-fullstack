@@ -11,3 +11,115 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwi
     "bio": "some bio"
 
 }
+
+### getProfile
+
+POST  http://localhost:8000/api/app/getchannel
+Content-Type: application/json
+
+{
+    "username" : "yumisan"
+}
+
+### createcollection
+
+GET  http://localhost:8000/api/app/createcollection
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+### get subscribed
+
+GET  http://localhost:8000/api/app/getsubscribed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+### subscribe
+
+POST http://localhost:8000/api/app/subscribe
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "subscribe" : "yumisan"
+}
+
+### unsubscribe
+
+POST http://localhost:8000/api/app/unsubscribe
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "unsubscribe" : "yumisan"
+}
+
+### is subscribed
+
+POST http://localhost:8000/api/app/issubscribed
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "username" : "yumisan"
+}
+
+### get feed
+
+GET  http://localhost:8000/api/app/getfeed
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+
+### get me
+
+GET  http://localhost:8000/api/app/me
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+### is subscribed
+
+POST http://localhost:8000/api/app/getvideo
+Content-Type: application/json
+
+{
+    "vid" : "64c01b52f3a0116a16f204e6"
+}
+
+### Me
+
+POST http://localhost:3002/api/app/stream/1690311506651.m3u8
+
+### Like video
+
+POST http://localhost:8000/api/app/likevideo
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c08d82b9052e18d7321b49"
+}
+
+### get Like count
+
+POST http://localhost:8000/api/app/likecount
+Content-Type: application/json
+
+{
+    "vid" : "64c08d82b9052e18d7321b49"
+}
+
+### UnLike video
+
+POST http://localhost:8000/api/app/unlikevideo
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c08d82b9052e18d7321b49"
+}
+
+### isLiked
+
+POST http://localhost:8000/api/app/isliked
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c08d82b9052e18d7321b49"
+}

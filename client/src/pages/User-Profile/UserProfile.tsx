@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import kawaii from '../../assets/kawaii.png';
 import { useEffect, useState } from 'react';
 import Api from '../../api/Fetch';
-import { createchannel } from '../../api/api';
+import { createCollections, createchannel } from '../../api/api';
 import { USERNAME, loadSecrets } from '../../secret';
 
 export default function UserProfile() {
@@ -23,16 +23,16 @@ export default function UserProfile() {
     }
   }, []);
 
-  const getCompressedImage = async (imgString : string) : Promise<string> => {
+  const getCompressedImage = async (imgString : string, size: number) : Promise<string> => {
 
-    // if greated than 200kb compress
-    if (imgString.length > 200000) {
+    // if greated than 500kb compress
+    if (imgString.length > 500000) {
       const canvas = document.createElement('canvas');
       const ctx : any = canvas.getContext('2d');
 
       // set the canvas dimensions compressed image size
-      const maxWidth = 400;
-      const maxHeight = 400;
+      const maxWidth = size;
+      const maxHeight = size;
 
       const image = new Image();
       image.src = imgString;
@@ -98,8 +98,8 @@ export default function UserProfile() {
   }
 
   const handelSubmit = async (): Promise<void> => {
-    const dp: string = await getCompressedImage(userImg);
-    const banner: string = await getCompressedImage(bannerImg);
+    const dp: string = await getCompressedImage(userImg, 400);
+    const banner: string = await getCompressedImage(bannerImg, 1000);
     const payload = {
       username,
       dp,
@@ -109,11 +109,17 @@ export default function UserProfile() {
 
     const api = new Api(payload, createchannel);
     const res = await api.postAuthjson();
-    if (res.status){
+    
+    const api2 = new Api(payload, createCollections);
+    const res2 = await api2.get();
+
+    if (!res.status) alert(res.msg);
+    if (!res2.status) alert(res2.msg);
+
+    if (res.status && res2.status){
       navigate('../home');
       localStorage.setItem('USERNAME', username);
     }
-    else alert(res.msg);
   }
 
   const handelInput = (e : any): void => {

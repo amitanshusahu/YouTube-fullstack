@@ -5,6 +5,17 @@
   padding: 0;
   text-decoration: none;
   font-family: 'DM Sans', sans-serif;
+  animation: fade 0.3s ease-in-out;
+}
+
+@keyframes fade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pop {
+  from {scale : 0;}
+  to { scale: 1;}
 }
 
 input, textarea{
@@ -30,4 +41,12 @@ button{
   background-color: rgb(0, 153, 255);
   color: white;
   cursor: pointer;
+}
+
+button:hover{
+  opacity: 0.9;
+}
+
+button:focus{
+  opacity: 0.7;
 }

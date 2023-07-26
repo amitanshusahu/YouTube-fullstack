@@ -4,6 +4,7 @@ const app = express();
 const port = 3002;
 const cors = require('cors');
 const path = require('path');
+require('./modules/db')();
 
 // Middlewares
 app.use(cors());

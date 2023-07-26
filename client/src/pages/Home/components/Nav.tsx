@@ -22,8 +22,8 @@ const StyledDiv = styled.menu`
   padding: 0 15px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   height: 100vh;
+  border-right: 2px solid #f0f0f0;
 
   img{
     width: 200px;

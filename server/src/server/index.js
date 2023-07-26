@@ -11,8 +11,12 @@ app.use(cors());
 
 // Routes
 const channelRoutes = require('./routes/channelRoutes');
+const subscriptionRoutes = require('./routes/subscribeRoutes');
+const videoRoutes = require('./routes/videoRoutes');
 
 app.use('/api/app/', channelRoutes);
+app.use('/api/app/', subscriptionRoutes);
+app.use('/api/app', videoRoutes);
 
 app.listen(port, () => {
   console.log('Server listening on port ', port)

@@ -1,25 +1,28 @@
 import styled from 'styled-components'
+import logo from '../../../assets/kawaii.png';
+import { Link } from 'react-router-dom';
 
 interface Props {
   thumbnail: string,
   dp: string,
   title: string,
-  channel: string
+  channel: string,
+  id: string
 }
 
-export default function VideoPost({thumbnail, dp, title, channel} : Props) {
+export default function VideoPost({thumbnail, dp, title, channel, id} : Props) {
   return (
     <StyledDiv>
-      <div className="img-wrapper">
+      <Link to={`../video/${id}`} className="img-wrapper">
         <img src={thumbnail} />
-      </div>
+      </Link>
       <div className="info">
         <div className="dp-wrapper">
-          <img src={dp} />
+          <img src={dp? dp : logo} />
         </div>
         <div className="body">
-          <h4>{title}</h4>
-          <p id='channelName'>{channel}</p>
+          <h4><Link to={`../video/${id}`}>{title}</Link></h4>
+          <p id='channelName'><Link to={`../${channel}`}>{channel}</Link></p>
         </div>
       </div>
     </StyledDiv>
@@ -34,7 +37,7 @@ const StyledDiv = styled.div`
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.02);
-  
+  animation: pop 0.3s ease;
 
   .info{
     display: flex;
