@@ -42,6 +42,8 @@ const StyledDiv = styled.menu`
     border-radius: 10px;
     cursor: pointer;
     color: grey;
+  animation: fade 0.3s ease-in-out;
+
     
     &:hover{
       background-color: #d2f6ff;

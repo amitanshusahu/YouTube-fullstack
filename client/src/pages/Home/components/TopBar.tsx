@@ -24,7 +24,7 @@ export default function TopBar() {
       else console.log(res);
     }
 
-    if (!USERNAME){
+    if (!USERNAME) {
       loadSecrets();
       getUsername();
     }
@@ -49,12 +49,16 @@ export default function TopBar() {
       <input type="search" placeholder='Search..' />
       <div className="action">
 
-        <span className='wrapper'>
-          <Bell />
-          <div className="notif-dropdown">
+        {
+          USERNAME
+            ? <span className='wrapper'>
+              <Bell />
+              <div className="notif-dropdown">
 
-          </div>
-        </span>
+              </div>
+            </span>
+            : null
+        }
 
         <div className="wrapper">
           <div className="dp-wrapper"><img src={channel ? channel.dp : logo} /></div>
@@ -65,7 +69,7 @@ export default function TopBar() {
               localStorage.clear();
               location.reload();
             }}
-            style={{color: 'lightcoral'}}
+              style={{ color: 'lightcoral' }}
             > ⭐ Logout</li>
           </menu>
         </div>

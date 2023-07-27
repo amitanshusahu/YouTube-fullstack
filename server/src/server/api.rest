@@ -92,7 +92,7 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
 
 {
-    "vid" : "64c08d82b9052e18d7321b49"
+    "vid" : "64c18b48d0d315fd66208a36"
 }
 
 ### get Like count
@@ -101,7 +101,7 @@ POST http://localhost:8000/api/app/likecount
 Content-Type: application/json
 
 {
-    "vid" : "64c08d82b9052e18d7321b49"
+    "vid" : "64c18b48d0d315fd66208a36"
 }
 
 ### UnLike video
@@ -111,7 +111,7 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
 
 {
-    "vid" : "64c08d82b9052e18d7321b49"
+    "vid" : "64c18b48d0d315fd66208a36"
 }
 
 ### isLiked
@@ -121,5 +121,56 @@ Content-Type: application/json
 Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
 
 {
-    "vid" : "64c08d82b9052e18d7321b49"
+    "vid" : "64c18b48d0d315fd66208a36"
 }
+
+### get Comment
+
+POST http://localhost:8000/api/app/getcomments
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c18b48d0d315fd66208a36"
+}
+
+### comment
+
+POST http://localhost:8000/api/app/comment
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c18b48d0d315fd66208a36",
+    "comment": "This is awesome and a new comment",
+    "dp" : "dffdfd"
+}
+
+### push history
+
+POST http://localhost:8000/api/app/posthistory
+Content-Type: application/json
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+{
+    "vid" : "64c18b48d0d315fd66208a36"
+}
+
+### get history
+
+GET  http://localhost:8000/api/app/gethistory
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFtaXRoIiwiaWF0IjoxNjkwMTEyMDY3fQ.uWa5S1y-atF3i-eKmmvAsR3B2N6WF6_L8bLHil4T-tY
+
+### get channel feed
+
+POST http://localhost:8000/api/app/getchannelfeed
+Content-Type: application/json
+
+{
+    "username" : "amith"
+}
+
+### get public feed
+
+GET http://localhost:8000/api/app/getpublicfeed
+Content-Type: application/json

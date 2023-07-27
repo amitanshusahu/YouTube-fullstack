@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import Api from '../../../api/Fetch';
-import { getchannel, issubscribed, subscribe, unsubscribe } from '../../../api/api';
+import { getchannel, getchannelfeed, getfeed, issubscribed, subscribe, unsubscribe } from '../../../api/api';
 import logo from '../../../assets/kawaii.png';
 import { USERNAME } from '../../../secret';
+import MiniVideoPost from './MiniVideoPosts';
 
 export default function Profile() {
 
@@ -13,6 +14,20 @@ export default function Profile() {
   const [channel, setChannel] = useState<any>();
   const [isSubscribed, setIsSubscribed] = useState<boolean>(false);
   const [showButton, setShowButton] =useState<boolean>(true);
+  const [feed, setfeed] = useState([]);
+
+  useEffect(() => {
+    async function getVideoFeed() {
+      const api = new Api({username}, getchannelfeed);
+      const res = await api.postJson();
+      if (res.status) {
+        setfeed(res.feed);
+      }
+      else console.log(res);
+    }
+
+    getVideoFeed();
+  }, []);
 
   useEffect(() => {
     async function getProfile() {
@@ -75,6 +90,22 @@ export default function Profile() {
           </div>
         </div>
       </div>
+
+      <div className="profile-feed">
+      {
+          (feed.length > 0)
+            ? feed.map((videofeed: any) => {
+              return (
+                <MiniVideoPost
+                  thumbnail={videofeed.thumbnail}
+                  title={videofeed.title}
+                  id={videofeed._id}
+                />
+              )
+            }).reverse()
+            : "No Videos"
+        }
+      </div>
     </StyledDiv>
   )
 }
@@ -85,6 +116,15 @@ const StyledDiv = styled.div`
     width: inherit;
     height: inherit;
     object-fit: cover;
+  }
+
+  .profile-feed{
+    width: calc(100% - 60px);
+    padding: 30px;
+    display: grid;
+    gap: 30px;
+    grid-template-columns: repeat(auto-fill, 300px);
+    grid-template-rows: 200px;
   }
 
   .unsubscribe{

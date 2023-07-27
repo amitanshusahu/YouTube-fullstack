@@ -7,7 +7,8 @@ import 'video.js/dist/video-js.css';
 import logo from '../../../assets/kawaii.png';
 import { Dislike, Like } from '../../../assets/icon';
 import Api from '../../../api/Fetch';
-import { USERNAME } from '../../../secret';
+import { USERNAME, loadSecrets } from '../../../secret';
+import { Link } from 'react-router-dom';
 
 export default function HlsPlayer({ videoMetadata, vid }: any) {
 
@@ -69,7 +70,8 @@ export default function HlsPlayer({ videoMetadata, vid }: any) {
     getLike();
     fetchissubscribed();
 
-    if (videoMetadata.username == USERNAME) {
+    loadSecrets();
+    if (videoMetadata.username == USERNAME ) {
       setShowButton(false);
     }
   })
@@ -156,7 +158,7 @@ export default function HlsPlayer({ videoMetadata, vid }: any) {
               <div className="dp-wrapper"><img src={videoMetadata.dp ? videoMetadata.dp : logo} /></div>
               <div className="info">
                 <h3>{videoMetadata.title}</h3>
-                <h4>{videoMetadata.username}</h4>
+                <p><Link to={`../${videoMetadata.username}`}>{videoMetadata.username}</Link></p>
               </div>
             </div>
             <div className="action">
@@ -202,6 +204,10 @@ const StyledDiv = styled.div`
     align-items: center;
     background-color: #e0fcff;
 
+    a{
+      color: grey;
+    }
+
     .hls-player{
       width: 100%;
       position: relative;
@@ -214,7 +220,9 @@ const StyledDiv = styled.div`
         transition: opacity 0.3s;
         border-radius: 5px;
         border: 1px solid cyan;
-        background-color: white;
+        background-color: #94f8ff5c;
+        color: white;
+        font-weight: bold;
         padding: 5px;
         opacity: 0;
         width: 70px;
@@ -239,6 +247,7 @@ const StyledDiv = styled.div`
         background-color: white;
         border-radius: 15px;
         padding: 30px;
+        border: 1px solid cyan;
       }
     }
 

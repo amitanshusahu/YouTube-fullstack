@@ -1,29 +1,20 @@
 import styled from 'styled-components'
-import logo from '../../../assets/kawaii.png';
 import { Link } from 'react-router-dom';
 
 interface Props {
   thumbnail: string,
-  dp: string,
   title: string,
-  channel: string,
   id: string
 }
 
-export default function VideoPost({thumbnail, dp, title, channel, id} : Props) {
+export default function MiniVideoPost({thumbnail, title, id} : Props) {
   return (
     <StyledDiv>
       <Link to={`../video/${id}`} className="img-wrapper">
         <img src={thumbnail} />
       </Link>
       <div className="info">
-        <div className="dp-wrapper">
-          <img src={dp? dp : logo} />
-        </div>
-        <div className="body">
           <h4><Link to={`../video/${id}`}>{title}</Link></h4>
-          <p id='channelName'><Link to={`../${channel}`}>{channel}</Link></p>
-        </div>
       </div>
     </StyledDiv>
   )
@@ -31,7 +22,7 @@ export default function VideoPost({thumbnail, dp, title, channel, id} : Props) {
 
 const StyledDiv = styled.div`
   background-color: white;
-  height: 300px;
+  height: 200px;
   display: flex;
   flex-direction: column;
   overflow: hidden;
@@ -49,25 +40,18 @@ const StyledDiv = styled.div`
   }
 
   .info{
-    display: flex;
-    gap: 15px;
-    margin: 15px;
-    align-items: center;
-
-    .body{
-      h4{
-        width: 300px;
+    h4{
+        margin: 10px;
+        width: 270px;
         overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
-        color: black;
       }
-    }
   }
 
   .img-wrapper{
-  width: 400px;
-  height: 230px;
+  width: 300px;
+  height: 160px;
   overflow: hidden;
 
   img{
@@ -77,21 +61,4 @@ const StyledDiv = styled.div`
   }
 }
 
-.dp-wrapper{
-  width: 40px;
-  height: 40px;
-  border-radius: 999px;
-  overflow: hidden;
-  border: 1px solid black;
-
-  img{
-    width: inherit;
-    height: inherit;
-    object-fit: cover;
-  }
-}
-
-#channelName{
-  color: grey;
-}
 `
