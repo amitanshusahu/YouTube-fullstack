@@ -1,6 +1,6 @@
 <h1 align = "center"> 
-    
-  ![qute-tube-logo-ghb](https://github.com/amitanshusahu/YouTube-fullstack/assets/83657737/94daa25c-0f8d-40f6-9d54-4450dbf558d8)
+
+![qute-tube-logo-ghb-removebg-preview](https://github.com/amitanshusahu/YouTube-fullstack/assets/83657737/6e80619d-998c-42e6-aa76-089bc75ec9a1)
 
 </h1>
 
@@ -9,9 +9,9 @@
 
 <div align="center">
     
-  ![thumnail](https://github.com/amitanshusahu/YouTube-fullstack/assets/83657737/e99b0c97-44a6-4a9d-b806-0017604bc344)
+![Blue Modern Benefits of Running Youtube Thumbnail](https://github.com/amitanshusahu/YouTube-fullstack/assets/83657737/8ca90bc6-c4b3-4d53-8f49-fc0b028c34c2)
 
-  [🔴 watch demo on youtube]()
+  [🔴 watch demo on youtube](https://youtu.be/4zdD7xFHhM0)
 
 </div>
 
@@ -23,7 +23,26 @@
 - mongodb
 
 ## 📌 Set up project
-- clone the repo
+- clone the repo and go into it
+```bash
+git clone https://github.com/amitanshusahu/YouTube-fullstack & cd YouTube-fullstack
+```
+- run rabbitmq docker image and make sure it is accessible on port 5672
+```bash
+docker run -p 5672:5672 rabbitmq
+```
+- run services in different terminal instances
+```bash
+# auth service
+cd server/src/auth-service & npm start
+
+# server
+cd server/src/server & npm start
+
+# upload service
+cd server/src/upload-service
+
+```
 
 
 ## 📓 References
