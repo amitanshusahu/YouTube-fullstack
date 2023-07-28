@@ -16,6 +16,10 @@
 </div>
 
 ---
+## 🛠️ Tech Stack / packages used
+- client: React, Typescript, hls.js, video.js, styled-components.
+- backend: nodejs, express, multer, mongoose, fluent-ffmpeg, cors, dotenv, jwt
+
 ## 💻 Machine Requirements
 - nodjs 19+
 - docker
